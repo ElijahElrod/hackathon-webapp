@@ -17,20 +17,26 @@
     <p>This is a Node application deployed to Heroku. It contains a ranking system for hackathon winners based 
       on the number of awards and and the number of hackathons won.
     </p>
-    <table id="example" class="display" style="width:100%">
-      <thead>
-        <tr>
-            <th>Name</th>
-            <th>Rating</th>
-        </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <a href=""
-      </tr>
-    </tbody>
-    </table>
-    
+     <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+     <script src="d3.min.js?v=3.2.8"></script>
+
+     <script type="text/javascript"charset="utf-8">
+         d3.text("data.csv", function(data) {
+             var parsedCSV = d3.csv.parseRows(data);
+
+             var container = d3.select("body")
+                 .append("table")
+
+                 .selectAll("tr")
+                     .data(parsedCSV).enter()
+                     .append("tr")
+
+                 .selectAll("td")
+                     .data(function(d) { return d; }).enter()
+                     .append("td")
+                     .text(function(d) { return d; });
+         });
+     </script>
   </div>
 </div>
 <div class="container">
@@ -42,11 +48,10 @@
         <li>This app was deployed to Heroku using git and made in collabration between Elijah Elrod and Willie McClinton.</li>
         <a type="button" class="btn btn-lg btn-primary" href="https://github.com/elijahelrod"><span class="glyphicon glyphicon-download"></span> Elijah's Github</a>
         <a type="button" class="btn btn-lg btn-primary" href="https://github.com/wmcclinton"><span class="glyphicon glyphicon-download"></span> Willie's Github</a>
-       
-     
       </ul>
     </div>
   </div> <!-- row -->
 </div>
 </body>
 </html>
+
